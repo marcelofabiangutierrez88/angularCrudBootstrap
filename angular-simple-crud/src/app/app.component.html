@@ -1,0 +1,61 @@
+
+<nav class="navbar navbar-dark bg-primary">
+<a href class="navbar-brand" href="/">
+  Angular Simple CRUD
+</a>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-4">
+    <ul class="list-group">
+      <li
+      *ngFor="let Employee of employeeArray"
+       class="list-group-item list-group-item-action"
+       (click)="openForEdit(Employee)"
+       [class.active]="employee == selectedEmployee"
+       >
+        <span class="badge badge-primary">{{Employee.id}}</span> {{ Employee.name}} - {{ Employee.country}}
+      </li>
+    </ul>
+    <div class="card mt-4">
+      <div class="card-body">
+        <div class="card-title">
+          Insert New Employee
+        </div>
+        <div class="form-group">
+        <input type="text" [(ngModel)]="selectedEmployee.name" placeholder="Insert Name" class="form-control">
+        </div>
+        <div class="form-group">
+        <input type="text" [(ngModel)]="selectedEmployee.country" placeholder="Insert a Coutry" class="form-control">
+        </div>
+        <button (click)="addOrEdit()" class="btn btn-primary" >
+          Submit
+        </button>
+        <button
+        *ngIf="selectedEmployee.id !==0"
+        class="btn btn-danger"
+        (click) ="delete()"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+    </div>
+    <div class="col-md-4 mt-4">
+      <img width="300" alt="Logo" src="https://images-na.ssl-images-amazon.com/images/I/21mNSdW3hmL.jpg">
+    </div>
+  </div>
+</div>
+<br>
+<br><br>
+<br><br>
+
+<footer class=" bg-dark rounded-top text-center">
+  <div class="container py-2">
+    <p class="text-white my-2">
+      &copy; Marcelo Gutierrez
+    </p>
+  </div>
+</footer>
+
+<router-outlet></router-outlet>
